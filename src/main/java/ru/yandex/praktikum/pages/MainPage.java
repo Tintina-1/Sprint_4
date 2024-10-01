@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class mainPage {
+public class MainPage {
 
     // Локаторы для кнопок "Заказать"
     private By orderButtonTop = By.className("Button_Button__ra12g");
@@ -20,14 +20,15 @@ public class mainPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public mainPage(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
     }
 
     // Нажать на кнопку "Заказать" вверху экрана
     public void clickOrderButtonTop() {
-        driver.findElement(orderButtonTop).click();
+        WebElement topOrderButton = wait.until(ExpectedConditions.visibilityOfElementLocated(orderButtonTop));
+        topOrderButton.click();
     }
 
     // Прокрутить до элемента и нажать на кнопку "Заказать" внизу экрана

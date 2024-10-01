@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class orderPage {
+public class OrderPage {
 
     // Поля формы заказа
 
@@ -30,16 +30,16 @@ public class orderPage {
     private By nextButton = By.xpath("//button[text()='Далее']");
 
     // Выбор даты для аренды
-    private By dateField = By.cssSelector("#root > div > div.Order_Content__bmtHS > div.Order_Form__17u6u > div.Order_MixedDatePicker__3qiay > div.react-datepicker-wrapper > div > input");
+    private By dateField = By.xpath("//input[@placeholder='* Когда привезти самокат']");
 
     // Метод для выбора срока аренды
     private By rentalPeriodDropdown = By.className("Dropdown-placeholder");
 
     // Кнопка подтверждения заказа
-    private By orderButton = By.cssSelector("#root > div > div.Order_Content__bmtHS > div.Order_Buttons__1xGrp > button:nth-child(2)");
+    private By orderButton = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     // Кнопка подтверждения согласия
-    private By confirmButton = By.xpath(" //*[@id=\"root\"]/div/div[2]/div[5]/div[2]/button[2]");
+    private By confirmButton = By.xpath(".//button[text()='Да']");
 
     // Сообщение об успешном заказе
     private By orderSuccessMessage = By.className("Order_ModalHeader__3FDaJ");
@@ -47,7 +47,7 @@ public class orderPage {
     // Конструктор
     private WebDriver driver;
 
-    public orderPage(WebDriver driver) {
+    public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -150,8 +150,10 @@ public class orderPage {
 
     // Получение сообщения об успешном заказе
     public String getSuccessMessage() {
-        return driver.findElement(orderSuccessMessage).getText();
+        WebElement orderConfirmationElement = driver.findElement(orderSuccessMessage);
+        return orderConfirmationElement.getText();
     }
+
 
 
 
